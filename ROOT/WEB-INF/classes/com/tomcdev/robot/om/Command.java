@@ -32,7 +32,7 @@ public class Command {
 		if (commandString.startsWith(Command.REPORT)){
 			command=Command.REPORT;
 		}
-		if (command.equals(Command.PLACE)){
+		if (command!=null && command.equals(Command.PLACE)){
 			String positionString=commandString.substring(6).trim();
 			position=new RobotPosition();
 			position.fromString(positionString);
@@ -68,6 +68,9 @@ public class Command {
 			}
 			if (command.equals(Command.LEFT) && robot.getPosition()!=null && robot.getPosition().isValid()){
 				robot.position.rotateLeft();
+			}
+			if (command.equals(Command.RIGHT) && robot.getPosition()!=null && robot.getPosition().isValid()){
+				robot.position.rotateRight();
 			}
 		}
 	}

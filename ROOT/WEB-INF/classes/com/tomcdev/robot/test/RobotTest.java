@@ -64,6 +64,28 @@ public class RobotTest extends TestCase{
 		command.executeCommand(robot);
 		assertEquals(true,robot.position.isValid());
 	}
+	public void testLeft(){
+		Robot robot=new Robot();
+		String commandString="PLACE 0,0,NORTH";
+		Command command=new Command(commandString);
+		command.executeCommand(robot);
+		commandString="LEFT";
+		command=new Command(commandString);
+		command.executeCommand(robot);
+		assertEquals(RobotPosition.WEST,robot.position.facing.toString());
+		
+	}
+	public void testRight(){
+		Robot robot=new Robot();
+		String commandString="PLACE 0,0,NORTH";
+		Command command=new Command(commandString);
+		command.executeCommand(robot);
+		commandString="RIGHT";
+		command=new Command(commandString);
+		command.executeCommand(robot);
+		assertEquals(RobotPosition.EAST,robot.position.facing.toString());
+		
+	}
 	public void testNullRobotPosition(){
 		String badPosition="6,6,balh";
 		RobotPosition position=new RobotPosition();
