@@ -6,7 +6,7 @@ public class Command {
 	
 	public String command=null;
 	
-	RobotPosition position;
+	public RobotPosition position;
 	
 	public static final String PLACE="PLACE";
 	public static final String MOVE="MOVE";
@@ -32,12 +32,30 @@ public class Command {
 		if (commandString.startsWith(Command.REPORT)){
 			command=Command.REPORT;
 		}
+		if (command.equals(Command.PLACE)){
+			String positionString=commandString.substring(6).trim();
+			position=new RobotPosition();
+			position.fromString(positionString);
+		}
 	}
 	public boolean isValid(){
+		if (command==null){
+			return false;
+		}
 		return true;
 	}
-	public void executeCommand(RobotPosition position){
-		
+	public void executeCommand(Robot robot){
+		if (isValid()){
+			if (command.equals(Command.PLACE)){
+				robot.position=this.position;
+			}
+			if (command.equals(Command.REPORT) && robot.getPosition()!=null && robot.getPosition().isValid()){
+				System.out.println(robot.position);
+			}
+			if (command.equals(Command.MOVE) && robot.getPosition()!=null && robot.getPosition().isValid()){
+				System.out.println(robot.position);
+			}
+		}
 	}
 	
 	

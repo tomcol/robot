@@ -57,6 +57,7 @@ public class RobotPosition {
 			facing=RobotPosition.SOUTH;
 		}
 	}
+	@Override
 	public String toString(){
 		if (isValid()){
 			return positionX+","+positionY+","+facing;
