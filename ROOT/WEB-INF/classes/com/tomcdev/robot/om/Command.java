@@ -53,7 +53,21 @@ public class Command {
 				System.out.println(robot.position);
 			}
 			if (command.equals(Command.MOVE) && robot.getPosition()!=null && robot.getPosition().isValid()){
-				System.out.println(robot.position);
+				if (robot.position.facing.equals(RobotPosition.NORTH)){
+					robot.position.moveNorth();
+				}
+				if (robot.position.facing.equals(RobotPosition.SOUTH)){
+					robot.position.moveSouth();
+				}
+				if (robot.position.facing.equals(RobotPosition.EAST)){
+					robot.position.moveEast();
+				}
+				if (robot.position.facing.equals(RobotPosition.WEST)){
+					robot.position.moveWest();
+				}
+			}
+			if (command.equals(Command.LEFT) && robot.getPosition()!=null && robot.getPosition().isValid()){
+				robot.position.rotateLeft();
 			}
 		}
 	}

@@ -57,6 +57,44 @@ public class RobotPosition {
 			facing=RobotPosition.SOUTH;
 		}
 	}
+	public void moveNorth(){
+		if (positionY<4){
+			positionY++;
+		}
+	}
+	public void moveSouth(){
+		if (positionY>0){
+			positionY--;
+		}
+	}
+	public void moveEast(){
+		if (positionX<4){
+			positionX++;
+		}
+	}
+	public void moveWest(){
+		if (positionX>0){
+			positionX--;
+		}
+	}
+	public void rotateLeft(){
+		if (facing.equals(RobotPosition.EAST)){
+			facing=RobotPosition.NORTH;
+			return;
+		}
+		if (facing.equals(RobotPosition.NORTH)){
+			facing=RobotPosition.WEST;
+			return;
+		}
+		if (facing.equals(RobotPosition.WEST)){
+			facing=RobotPosition.SOUTH;
+			return;
+		}
+		if (facing.equals(RobotPosition.SOUTH)){
+			facing=RobotPosition.EAST;
+			return;
+		}
+	}
 	@Override
 	public String toString(){
 		if (isValid()){
