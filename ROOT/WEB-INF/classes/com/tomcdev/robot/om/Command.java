@@ -1,5 +1,7 @@
 package com.tomcdev.robot.om;
 
+import com.tomcdev.robot.controller.RobotPositionController;
+
 public class Command {
 
 	String commandString="";
@@ -34,8 +36,7 @@ public class Command {
 		}
 		if (command!=null && command.equals(Command.PLACE)){
 			String positionString=commandString.substring(6).trim();
-			position=new RobotPosition();
-			position.fromString(positionString);
+			position=new RobotPosition(positionString);
 		}
 	}
 	public boolean isValid(){
@@ -53,10 +54,10 @@ public class Command {
 				System.out.println(robot.position);
 			}
 			if (command.equals(Command.MOVE) && robot.getPosition()!=null && robot.getPosition().isValid()){
-				if (robot.position.facing.equals(RobotPosition.NORTH)){
-					robot.position.moveNorth();
+				if (robot.position.getFacing().equals(RobotPosition.NORTH)){
+					robot.position=RobotPositionController.moveNorth(robot.position);
 				}
-				if (robot.position.facing.equals(RobotPosition.SOUTH)){
+				/*if (robot.position.facing.equals(RobotPosition.SOUTH)){
 					robot.position.moveSouth();
 				}
 				if (robot.position.facing.equals(RobotPosition.EAST)){
@@ -64,14 +65,14 @@ public class Command {
 				}
 				if (robot.position.facing.equals(RobotPosition.WEST)){
 					robot.position.moveWest();
-				}
+				}*/
 			}
-			if (command.equals(Command.LEFT) && robot.getPosition()!=null && robot.getPosition().isValid()){
+			/*if (command.equals(Command.LEFT) && robot.getPosition()!=null && robot.getPosition().isValid()){
 				robot.position.rotateLeft();
 			}
 			if (command.equals(Command.RIGHT) && robot.getPosition()!=null && robot.getPosition().isValid()){
 				robot.position.rotateRight();
-			}
+			}*/
 		}
 	}
 	

@@ -14,8 +14,7 @@ public class RobotTest extends TestCase{
 	}
 	public void testPlaceRobot(){
 		String command="PLACE 0,0,NORTH";
-		RobotPosition position=new RobotPosition();
-		position.fromString("0,0,NORTH");
+		RobotPosition position=new RobotPosition("0,0,NORTH");
 		assertEquals ("0,0,NORTH",position.toString());
 	}
 	public void testPlaceCommand(){
@@ -72,7 +71,7 @@ public class RobotTest extends TestCase{
 		commandString="LEFT";
 		command=new Command(commandString);
 		command.executeCommand(robot);
-		assertEquals(RobotPosition.WEST,robot.position.facing.toString());
+		assertEquals(RobotPosition.WEST,robot.position.getFacing().toString());
 		
 	}
 	public void testRight(){
@@ -83,13 +82,12 @@ public class RobotTest extends TestCase{
 		commandString="RIGHT";
 		command=new Command(commandString);
 		command.executeCommand(robot);
-		assertEquals(RobotPosition.EAST,robot.position.facing.toString());
+		assertEquals(RobotPosition.EAST,robot.position.getFacing().toString());
 		
 	}
 	public void testNullRobotPosition(){
 		String badPosition="6,6,balh";
-		RobotPosition position=new RobotPosition();
-		position.fromString(badPosition);
+		RobotPosition position=new RobotPosition(badPosition);
 		assertEquals (false,position.isValid());
 	}
 	public void testMove(){
