@@ -67,10 +67,10 @@ public class Command {
 					robot.position.moveWest();
 				}*/
 			}
-			/*if (command.equals(Command.LEFT) && robot.getPosition()!=null && robot.getPosition().isValid()){
-				robot.position.rotateLeft();
+			if (command.equals(Command.LEFT) && robot.getPosition()!=null && robot.getPosition().isValid()){
+				robot.position=RobotPositionController.rotateLeft(robot.position);
 			}
-			if (command.equals(Command.RIGHT) && robot.getPosition()!=null && robot.getPosition().isValid()){
+			/*if (command.equals(Command.RIGHT) && robot.getPosition()!=null && robot.getPosition().isValid()){
 				robot.position.rotateRight();
 			}*/
 		}

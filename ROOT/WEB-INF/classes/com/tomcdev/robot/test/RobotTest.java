@@ -100,6 +100,16 @@ public class RobotTest extends TestCase{
 		command.executeCommand(robot);
 		assertEquals("0,1,NORTH",robot.position.toString());
 	}
+	public void testMoveEast(){
+		Robot robot=new Robot();
+		String commandString="PLACE 0,0,EAST";
+		Command command=new Command(commandString);
+		command.executeCommand(robot);
+		commandString="MOVE";
+		command=new Command(commandString);
+		command.executeCommand(robot);
+		assertEquals("1,0,EAST",robot.position.toString());
+	}
 	public void testCommandLeft(){
 		String commandString="LEFT";
 		Command command=new Command(commandString);

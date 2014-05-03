@@ -30,6 +30,34 @@ public class RobotPositionController {
 		}
 		return position;
 	}
-	
+	public static RobotPosition rotateLeft(RobotPosition position){
+		if (position.getFacing().equals(RobotPosition.EAST)){
+			RobotPosition newPosition=new RobotPosition(position.getPositionX(),position.getPositionY(),RobotPosition.NORTH);
+			return newPosition;
+		}
+		if (position.getFacing().equals(RobotPosition.NORTH)){
+			RobotPosition newPosition=new RobotPosition(position.getPositionX(),position.getPositionY(),RobotPosition.WEST);
+			return newPosition;
+		}
+		return position;
+	}
+	/*public void rotateLeft(){
+		if (facing.equals(RobotPosition.EAST)){
+			facing=RobotPosition.NORTH;
+			return;
+		}
+		if (facing.equals(RobotPosition.NORTH)){
+			facing=RobotPosition.WEST;
+			return;
+		}
+		if (facing.equals(RobotPosition.WEST)){
+			facing=RobotPosition.SOUTH;
+			return;
+		}
+		if (facing.equals(RobotPosition.SOUTH)){
+			facing=RobotPosition.EAST;
+			return;
+		}
+	}*/
 	
 }
