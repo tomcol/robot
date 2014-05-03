@@ -57,22 +57,22 @@ public class Command {
 				if (robot.position.getFacing().equals(RobotPosition.NORTH)){
 					robot.position=RobotPositionController.moveNorth(robot.position);
 				}
-				/*if (robot.position.facing.equals(RobotPosition.SOUTH)){
-					robot.position.moveSouth();
+				if (robot.position.getFacing().equals(RobotPosition.SOUTH)){
+					robot.position=RobotPositionController.moveSouth(robot.position);
 				}
-				if (robot.position.facing.equals(RobotPosition.EAST)){
-					robot.position.moveEast();
+				if (robot.position.getFacing().equals(RobotPosition.EAST)){
+					robot.position=RobotPositionController.moveEast(robot.position);
 				}
-				if (robot.position.facing.equals(RobotPosition.WEST)){
-					robot.position.moveWest();
-				}*/
+				if (robot.position.getFacing().equals(RobotPosition.WEST)){
+					robot.position=RobotPositionController.moveWest(robot.position);
+				}
 			}
 			if (command.equals(Command.LEFT) && robot.getPosition()!=null && robot.getPosition().isValid()){
 				robot.position=RobotPositionController.rotateLeft(robot.position);
 			}
-			/*if (command.equals(Command.RIGHT) && robot.getPosition()!=null && robot.getPosition().isValid()){
-				robot.position.rotateRight();
-			}*/
+			if (command.equals(Command.RIGHT) && robot.getPosition()!=null && robot.getPosition().isValid()){
+				robot.position=RobotPositionController.rotateRight(robot.position);
+			}
 		}
 	}
 	

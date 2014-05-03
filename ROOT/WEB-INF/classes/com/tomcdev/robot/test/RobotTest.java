@@ -1,5 +1,8 @@
 package com.tomcdev.robot.test;
 
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+
 import com.tomcdev.robot.om.Command;
 import com.tomcdev.robot.om.Robot;
 import com.tomcdev.robot.om.RobotPosition;
@@ -7,13 +10,13 @@ import com.tomcdev.robot.om.RobotPosition;
 import junit.framework.TestCase;
 
 public class RobotTest extends TestCase{
-
+	ByteArrayOutputStream baos;
+	PrintStream old;
 	public void testRobotObject(){
 		Robot robot=new Robot();
 		assertEquals (true,robot!=null);
 	}
 	public void testPlaceRobot(){
-		String command="PLACE 0,0,NORTH";
 		RobotPosition position=new RobotPosition("0,0,NORTH");
 		assertEquals ("0,0,NORTH",position.toString());
 	}
@@ -36,7 +39,10 @@ public class RobotTest extends TestCase{
 		command.executeCommand(robot);
 		commandString="REPORT";
 		command=new Command(commandString);
+		redirectOutput();
 		command.executeCommand(robot);
+		resetOutput();
+		assertEquals("0,0,NORTH",baos.toString().trim());
 	}
 	public void testEdgeOfTable(){
 		Robot robot=new Robot();
@@ -60,7 +66,9 @@ public class RobotTest extends TestCase{
 		command.executeCommand(robot);
 		commandString="REPORT";
 		command=new Command(commandString);
+		this.redirectOutput();
 		command.executeCommand(robot);
+		this.redirectOutput();
 		assertEquals(true,robot.position.isValid());
 	}
 	public void testLeft(){
@@ -121,9 +129,45 @@ public class RobotTest extends TestCase{
 		assertEquals(Command.RIGHT,command.command);
 	}
 	public void testCommandReport(){
-		String commandString="REPORT";
+		Robot robot=new Robot();
+		String commandString="PLACE 0,0,NORTH";
 		Command command=new Command(commandString);
-		assertEquals(Command.REPORT,command.command);
+		command.executeCommand(robot);
+		commandString="REPORT";
+		redirectOutput();
+		command=new Command(commandString);
+		command.executeCommand(robot);
+		resetOutput();
+		assertEquals("0,0,NORTH",baos.toString().trim());
 	}
-	
+	public void testCommandsText(){
+		Robot robot=new Robot();
+		String commands="PLACE 1,2,EAST\n";
+		commands+="MOVE\n";
+		commands+="MOVE\n";
+		commands+="LEFT\n";
+		commands+="MOVE\n";
+		commands+="REPORT";
+		String[] commandsArr=commands.split("\n");
+		int i=0;
+		redirectOutput();
+		while (i<commandsArr.length){
+			String commandString=commandsArr[i];
+			Command command=new Command(commandString);
+			command.executeCommand(robot);
+			i++;
+		}
+		resetOutput();
+	    assertEquals("3,3,NORTH",baos.toString().trim());
+	}
+	public void redirectOutput(){
+		baos = new ByteArrayOutputStream();
+	    PrintStream ps = new PrintStream(baos);
+	    old = System.out;
+		System.setOut(ps);
+	}
+	public void resetOutput(){
+		System.out.flush();
+	    System.setOut(old);
+	}
 }

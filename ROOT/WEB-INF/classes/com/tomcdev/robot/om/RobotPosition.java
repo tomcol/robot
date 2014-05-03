@@ -60,26 +60,7 @@ public class RobotPosition {
 	}
 	
 	
-	/*
-	public void rotateRight(){
-		if (facing.equals(RobotPosition.EAST)){
-			facing=RobotPosition.SOUTH;
-			return;
-		}
-		if (facing.equals(RobotPosition.NORTH)){
-			facing=RobotPosition.EAST;
-			return;
-		}
-		if (facing.equals(RobotPosition.WEST)){
-			facing=RobotPosition.NORTH;
-			return;
-		}
-		if (facing.equals(RobotPosition.SOUTH)){
-			facing=RobotPosition.WEST;
-			return;
-		}
-	}
-	*/
+	
 	public Integer getPositionX() {
 		return positionX;
 	}
