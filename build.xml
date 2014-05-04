@@ -26,4 +26,12 @@
         	<test name="com.tomcdev.robot.test.RobotTest"/>
         </junit>
     </target>
+    <target name="run" depends="compile">
+    <java classname="com.tomcdev.robot.RunRobot">
+       <classpath path="ROOT/WEB-INF/classes">
+				<path refid="classpath" />
+				<pathelement location="ROOT/WEB-INF/classes" />
+			</classpath>
+    </java>
+    </target>
 </project>
