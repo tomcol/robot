@@ -1,0 +1,19 @@
+Testsuite: com.tomcdev.robot.test.RobotTest
+Tests run: 16, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.007 sec
+
+Testcase: testRobotObject took 0.002 sec
+Testcase: testPlaceRobot took 0 sec
+Testcase: testPlaceCommand took 0.001 sec
+Testcase: testExecutePlaceCommand took 0 sec
+Testcase: testExecuteReportCommand took 0.001 sec
+Testcase: testEdgeOfTable took 0 sec
+Testcase: testLeft took 0 sec
+Testcase: testRight took 0.001 sec
+Testcase: testNullRobotPosition took 0 sec
+Testcase: testMove took 0 sec
+Testcase: testMoveEast took 0 sec
+Testcase: testCommandLeft took 0 sec
+Testcase: testCommandRight took 0 sec
+Testcase: testCommandReport took 0 sec
+Testcase: testCommandsText took 0 sec
+Testcase: testCommandsTextFile took 0.001 sec
