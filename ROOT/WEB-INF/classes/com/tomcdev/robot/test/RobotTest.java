@@ -1,11 +1,13 @@
 package com.tomcdev.robot.test;
 
 import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.io.PrintStream;
 
 import com.tomcdev.robot.om.Command;
 import com.tomcdev.robot.om.Robot;
 import com.tomcdev.robot.om.RobotPosition;
+import com.tomcdev.utils.FileUtils;
 
 import junit.framework.TestCase;
 
@@ -148,6 +150,21 @@ public class RobotTest extends TestCase{
 		commands+="LEFT\n";
 		commands+="MOVE\n";
 		commands+="REPORT";
+		String[] commandsArr=commands.split("\n");
+		int i=0;
+		redirectOutput();
+		while (i<commandsArr.length){
+			String commandString=commandsArr[i];
+			Command command=new Command(commandString);
+			command.executeCommand(robot);
+			i++;
+		}
+		resetOutput();
+	    assertEquals("3,3,NORTH",baos.toString().trim());
+	}
+	public void testCommandsTextFile() throws IOException{
+		Robot robot=new Robot();
+		String commands=FileUtils.readFileAsString("commands.txt");
 		String[] commandsArr=commands.split("\n");
 		int i=0;
 		redirectOutput();
