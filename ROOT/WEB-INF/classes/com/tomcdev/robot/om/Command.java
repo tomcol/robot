@@ -3,12 +3,10 @@ package com.tomcdev.robot.om;
 import com.tomcdev.robot.controller.RobotPositionController;
 
 public class Command {
-
-	String commandString="";
 	
-	public String command=null;
+	private final String command;
 	
-	public RobotPosition position;
+	private final RobotPosition position;
 	
 	public static final String PLACE="PLACE";
 	public static final String MOVE="MOVE";
@@ -17,26 +15,26 @@ public class Command {
 	public static final String REPORT="REPORT";
 	
 	public Command(String commandString){
-		this.commandString=commandString;
 		if (commandString.startsWith(Command.PLACE)){
 			command=Command.PLACE;
-			//parse position part;
-		}
-		if (commandString.startsWith(Command.MOVE)){
-			command=Command.MOVE;
-		}
-		if (commandString.startsWith(Command.LEFT)){
-			command=Command.LEFT;
-		}
-		if (commandString.startsWith(Command.RIGHT)){
-			command=Command.RIGHT;
-		}
-		if (commandString.startsWith(Command.REPORT)){
-			command=Command.REPORT;
-		}
-		if (command!=null && command.equals(Command.PLACE)){
 			String positionString=commandString.substring(6).trim();
 			position=new RobotPosition(positionString);
+		}else if(commandString.startsWith(Command.MOVE)){
+			command=Command.MOVE;
+			position=null;
+		}else if(commandString.startsWith(Command.LEFT)){
+			command=Command.LEFT;
+			position=null;
+		}else if(commandString.startsWith(Command.RIGHT)){
+			command=Command.RIGHT;
+			position=null;
+		}else if(commandString.startsWith(Command.REPORT)){
+			command=Command.REPORT;
+			position=null;
+		}else{
+			commandString="";
+			command=null;
+			position=null;
 		}
 	}
 	public boolean isValid(){
@@ -74,6 +72,12 @@ public class Command {
 				robot.position=RobotPositionController.rotateRight(robot.position);
 			}
 		}
+	}
+	public String getCommand() {
+		return command;
+	}
+	public RobotPosition getPosition() {
+		return position;
 	}
 	
 	

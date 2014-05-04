@@ -23,7 +23,7 @@ public class RobotTest extends TestCase{
 	public void testPlaceCommand(){
 		String commandString="PLACE 0,0,NORTH";
 		Command command=new Command(commandString);
-		assertEquals(commandString,"PLACE "+command.position);
+		assertEquals(commandString,"PLACE "+command.getPosition());
 	}
 	public void testExecutePlaceCommand(){
 		Robot robot=new Robot();
@@ -121,12 +121,12 @@ public class RobotTest extends TestCase{
 	public void testCommandLeft(){
 		String commandString="LEFT";
 		Command command=new Command(commandString);
-		assertEquals(Command.LEFT,command.command);
+		assertEquals(Command.LEFT,command.getCommand());
 	}
 	public void testCommandRight(){
 		String commandString="RIGHT";
 		Command command=new Command(commandString);
-		assertEquals(Command.RIGHT,command.command);
+		assertEquals(Command.RIGHT,command.getCommand());
 	}
 	public void testCommandReport(){
 		Robot robot=new Robot();
